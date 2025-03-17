@@ -1,0 +1,12 @@
+.flex-parent-element{
+    display: flex;
+    flex-wrap: wrap;
+    border-top: 2px solid violet;
+    padding-top: 25px;
+}
+
+.flex-child-element{
+    flex: 1 0 21%;
+    margin: 2px;
+    border: 2px solid violet;
+}
