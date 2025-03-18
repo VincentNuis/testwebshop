@@ -25,13 +25,13 @@ export class ItemGridComponent {
     new Item(10, "Battle Chip", "Battle Chips", 10, "Cannon.png"),
     new Item(11, "Battle Chip", "Battle Chips", 10, "Cannon.png"),
     new Item(12, "Battle Chip", "Battle Chips", 10, "Cannon.png"),
-    new Item(13, "MegaMan.EXE", "Navi", 40, "Rockman.png"),
-    new Item(14, "MegaMan.EXE", "Navi", 40, "Rockman.png"),
-    new Item(15, "MegaMan.EXE", "Navi", 40, "Rockman.png"),
-    new Item(16, "MegaMan.EXE", "Navi", 40, "Rockman.png"),
-    new Item(17, "MegaMan.EXE", "Navi", 40, "Rockman.png"),
-    new Item(18, "MegaMan.EXE", "Navi", 40, "Rockman.png"),
-    new Item(19, "MegaMan.EXE", "Navi", 40, "Rockman.png"),
+    new Item(13, "MegaMan .EXE", "Navi", 40, "Rockman.png"),
+    new Item(14, "MegaMan .EXE", "Navi", 40, "Rockman.png"),
+    new Item(15, "MegaMan .EXE", "Navi", 40, "Rockman.png"),
+    new Item(16, "MegaMan .EXE", "Navi", 40, "Rockman.png"),
+    new Item(17, "MegaMan .EXE", "Navi", 40, "Rockman.png"),
+    new Item(18, "MegaMan .EXE", "Navi", 40, "Rockman.png"),
+    new Item(19, "MegaMan .EXE", "Navi", 40, "Rockman.png"),
   ]
     
 }

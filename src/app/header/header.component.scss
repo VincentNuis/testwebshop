@@ -36,6 +36,13 @@ header {
     flex-direction: row-reverse;
   }
   
+  .counter {
+    background: solid;
+    background-color: red;
+    border-radius: 50%;
+    padding:5px;
+  }
+
   p {
     margin: 0;
     font-size: 0.8rem;

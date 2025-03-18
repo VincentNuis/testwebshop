@@ -1,5 +1,8 @@
 <header>
-    <h1>Hello</h1>
-    <button class="push">Cart</button>
-    <button>Login</button>
+    <h1>HiguReya</h1>
+    <button class="text-button push" (click)="addToCart()">
+        <span>Cart </span> 
+        <span class="counter">{{ counter() }}</span>
+    </button>
+    <button class="text-button">Login</button>
 </header>
