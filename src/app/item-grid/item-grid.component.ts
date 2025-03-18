@@ -14,10 +14,24 @@ export class ItemGridComponent {
   
   itemList: Item[] = 
   [new Item(1, "Advanced Pet", "PET", 50, "AdvancedPet.jpg"),
-    new Item(2, "Advanced Pet 2", "PET", 50, "AdvancedPet.jpg"),
-    new Item(3, "Advanced Pet 3", "PET", 50, "AdvancedPet.jpg"),
-    new Item(4, "Advanced Pet 4", "PET", 50, "AdvancedPet.jpg"),
-    new Item(5, "Advanced Pet 5", "PET", 50, "AdvancedPet.jpg"),
-    new Item(6, "Advanced Pet 6", "PET", 50, "AdvancedPet.jpg")]
+    new Item(2, "Advanced Pet", "PET", 50, "AdvancedPet.jpg"),
+    new Item(3, "Advanced Pet", "PET", 50, "AdvancedPet.jpg"),
+    new Item(4, "Advanced Pet", "PET", 50, "AdvancedPet.jpg"),
+    new Item(5, "Advanced Pet", "PET", 50, "AdvancedPet.jpg"),
+    new Item(6, "Advanced Pet", "PET", 50, "AdvancedPet.jpg"),
+    new Item(7, "Battle Chip", "Battle Chips", 10, "Cannon.png"),
+    new Item(8, "Battle Chip", "Battle Chips", 10, "Cannon.png"),
+    new Item(9, "Battle Chip", "Battle Chips", 10, "Cannon.png"),
+    new Item(10, "Battle Chip", "Battle Chips", 10, "Cannon.png"),
+    new Item(11, "Battle Chip", "Battle Chips", 10, "Cannon.png"),
+    new Item(12, "Battle Chip", "Battle Chips", 10, "Cannon.png"),
+    new Item(13, "MegaMan.EXE", "Navi", 40, "Rockman.png"),
+    new Item(14, "MegaMan.EXE", "Navi", 40, "Rockman.png"),
+    new Item(15, "MegaMan.EXE", "Navi", 40, "Rockman.png"),
+    new Item(16, "MegaMan.EXE", "Navi", 40, "Rockman.png"),
+    new Item(17, "MegaMan.EXE", "Navi", 40, "Rockman.png"),
+    new Item(18, "MegaMan.EXE", "Navi", 40, "Rockman.png"),
+    new Item(19, "MegaMan.EXE", "Navi", 40, "Rockman.png"),
+  ]
     
 }
