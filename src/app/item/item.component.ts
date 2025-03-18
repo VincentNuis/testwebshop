@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-item',
@@ -7,5 +7,14 @@ import { Component } from '@angular/core';
   styleUrl: './item.component.scss'
 })
 export class ItemComponent {
+  @Input({ required:true }) item!: {
+    name: string;
+    category: string;
+    price: number;
+    image: string;
+  }
 
+  get imagePath(){
+    return 'assets/' + this.item.image;
+  }
 }

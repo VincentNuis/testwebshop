@@ -1,15 +1,7 @@
 <h1>Category Name</h1>
 <div class="flex-parent-element">
-    <app-item class="flex-child-element"></app-item>
-    <app-item class="flex-child-element"></app-item>
-    <app-item class="flex-child-element"></app-item>
-    <app-item class="flex-child-element"></app-item>
-    <app-item class="flex-child-element"></app-item>
-    <app-item class="flex-child-element"></app-item>
-    <app-item class="flex-child-element"></app-item>
-    <app-item class="flex-child-element"></app-item>
-    <app-item class="flex-child-element"></app-item>
-    <app-item class="flex-child-element"></app-item>
-    <app-item class="flex-child-element"></app-item>
-    <app-item class="flex-child-element"></app-item>
+    @for (item of itemList; track item.id){
+        <app-item class="flex-child-element" [item]=item></app-item>
+    }
+    <!-- <app-item class="flex-child-element" *ngFor="let item of itemList"></app-item> -->
 </div>

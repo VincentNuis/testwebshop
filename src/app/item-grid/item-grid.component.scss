@@ -6,7 +6,8 @@
 }
 
 .flex-child-element{
-    flex: 1 0 21%;
+    flex: 0 22%;
     margin: 2px;
     border: 2px solid violet;
+    box-sizing: border-box;
 }

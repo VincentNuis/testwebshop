@@ -1,17 +1,10 @@
 <h1>Category</h1>
 <div class="border-top">
     <ul>
-        <li>
-            <button class="text-button">Category 1</button>
-        </li>
-        <li>
-            <button class="text-button">Category 2</button>
-        </li>
-        <li>
-            <button class="text-button">Category 3</button>
-        </li>
-        <li>
-            <button class="text-button">Category 4</button>
-        </li>
+        @for (category of categories; track category){
+            <li>
+                <button class="text-button">{{ category }}</button>
+            </li>
+        }
     </ul>
 </div>

@@ -7,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrl: './sidebar.component.scss'
 })
 export class SidebarComponent {
-
+categories: string[] = ["New", "PET", "Battle Chips", "Navi"];
 }
