@@ -1,7 +1,6 @@
-<h1>Category Name</h1>
+<h1>{{ this.categoryService.currentCategory() }}</h1>
 <div class="flex-parent-element">
     @for (item of itemList; track item.id){
         <app-item class="flex-child-element" [item]=item></app-item>
     }
-    <!-- <app-item class="flex-child-element" *ngFor="let item of itemList"></app-item> -->
 </div>

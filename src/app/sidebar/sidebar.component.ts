@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { CategoryService } from '../services/category.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -7,5 +8,10 @@ import { Component } from '@angular/core';
   styleUrl: './sidebar.component.scss'
 })
 export class SidebarComponent {
-categories: string[] = ["New", "PET", "Battle Chips", "Navi"];
+  categoryService = inject(CategoryService);
+  categories = this.categoryService.getCategories();
+
+  changeCategory(category: string){
+    this.categoryService.changeCategory(category);
+  }
 }

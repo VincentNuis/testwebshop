@@ -1,4 +1,5 @@
-import { Component, Input } from '@angular/core';
+import { Component, Inject, Input } from '@angular/core';
+import { CategoryService } from '../services/category.service';
 
 @Component({
   selector: 'app-item',

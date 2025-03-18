@@ -3,7 +3,7 @@
     <ul>
         @for (category of categories; track category){
             <li>
-                <button class="text-button">{{ category }}</button>
+                <button class="text-button" (click)="changeCategory(category)">{{ category }}</button>
             </li>
         }
     </ul>
