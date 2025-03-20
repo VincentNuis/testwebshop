@@ -16,6 +16,10 @@ export class CategoryService {
         this.currentCategorySignal.set(category);
     }
 
+    addCategory(newCategory: string){
+        this.categories.push(newCategory);
+    }
+
     getCategories(){
         return this.categories;
     }

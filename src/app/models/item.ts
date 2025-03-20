@@ -12,4 +12,12 @@ export class Item {
         this.price = price;
         this.image = image;
     }
+
+
+}
+
+export interface NewItem {
+    name: string;
+    category: string;
+    price: number;
 }
