@@ -1,8 +1,12 @@
 <header>
-    <h1>HiguReya</h1>
-    <button class="text-button push" (click)="addToCart()">
-        <span>Cart </span> 
+    <h1 routerLink="/">HiguReya</h1>
+    <button class="text-button push" routerLink="/cart">
+        <span>Cart </span>
         <span class="counter">{{ counter() }}</span>
     </button>
-    <button class="text-button">Login</button>
+    <button class="text-button" (click)="onLogin()">Login</button>
+
+    @if (isLoggingIn) {
+    <app-login (cancel)="onCancelLogin()" (login)="onCancelLogin()"></app-login>
+    }
 </header>

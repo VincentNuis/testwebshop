@@ -9,7 +9,13 @@
 
     <p>
       <label for="category">Category</label>
-      <input type="text" id="category" name="category" [(ngModel)]="enteredCategory"/>
+      <select [ngModel]="enteredCategory">
+                <option disabled
+                value="">--Select a Category--</option>
+                @for(category of categories; track category){
+                    <option>{{ category }}</option>
+                }
+            </select>
     </p>
 
     <p>
@@ -17,9 +23,29 @@
       <input type="float" id="price" name="price" [(ngModel)]="enteredPrice"/>
     </p>
 
+    <div>
+        <label for="image">Select an Image:</label>
+        <input
+          type="file"
+          id="image"
+          name="image"
+          accept="image/*"
+          (change)="onFileSelected($event)"
+          required
+        />
+      </div>
+
     <p class="actions">
       <button type="button" (click)="onCancel()">Cancel</button>
       <button type="submit">Create</button>
     </p>
   </form>
+  
+  @if(imagePreview){
+    <div class="image-preview">
+        <h3>Image Preview:</h3>
+        <img [src]="imagePreview" alt="Image Preview" class="preview-image"/>
+      </div>
+  }
+  
 </dialog>

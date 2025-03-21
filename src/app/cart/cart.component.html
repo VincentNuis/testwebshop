@@ -1,0 +1,30 @@
+<div class="main">
+    <div class="top-part">
+        Cart
+    </div>
+
+    <div>
+        <div class="in-a-row">
+            <span class="row-child">Product</span>
+            <span class="row-child">Name</span>
+            <span class="row-child">Price</span>
+            <span class="row-child">Amount</span>
+            <span class="row-child">Delete</span>
+        </div>
+        @for (item of cart(); track item.item.id){
+        <div class="in-a-row">
+            <span class="row-child">Product</span>
+            <span class="row-child">{{ item.item.name }}</span>
+            <span class="row-child">{{ item.item.price }}</span>
+            <select class="row-child" [ngModel]="item.quantity"
+            (ngModelChange)="onQuantitySelected(item, $event)">
+                <option disabled
+                value="">--Select a quantity--</option>
+        <option *ngFor="let q of qtyArr()">{{ q }}</option>
+            </select>
+            <!-- <span class="row-child" [ngModel]="item.quantity">Amount</span> -->
+            <span class="row-child" (click)="onRemove(item)">Delete</span>
+        </div>
+        }
+    </div>
+</div>

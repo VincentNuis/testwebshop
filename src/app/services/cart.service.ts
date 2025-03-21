@@ -9,7 +9,7 @@ export class CartService{
     cartItems = signal<CartItem[]>([]);
 
     addToCart(item: Item): void {
-        this.cartItems.update(items => 
+            this.cartItems.update(items => 
             [...items, { item, quantity: 1 }])
     }
 
@@ -18,7 +18,7 @@ export class CartService{
             items.filter(item => item.item.id !== cartItem.item.id))
     }
 
-    updateInCard(cartItem: CartItem, quantity: number): void{
+    updateInCart(cartItem: CartItem, quantity: number): void{
         this.cartItems.update(items => 
             items.map(item =>
                 item.item.id === cartItem.item.id ?

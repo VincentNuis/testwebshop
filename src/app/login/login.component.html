@@ -1,12 +1,21 @@
-<div>
+<div class="backdrop" (click)="onCancel()"></div>
+<dialog open>
     <h2>Login</h2>
-    <form (ngSubmit)="onSubmit()">
+    <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
       <label for="username">Username:</label>
-      <input type="text" id="username" [(ngModel)]="username" name="username" required>
-  
+      <input type="text" id="username" [(ngModel)]="username" name="username" #usernameInput="ngModel" required>
+      @if(usernameInput.invalid && usernameInput.touched){
+        <div class="error">
+            Username is required
+          </div>
+      }
       <label for="password">Password:</label>
-      <input type="password" id="password" [(ngModel)]="password" name="password" required>
-  
-      <button type="submit">Login</button>
+      <input type="password" id="password" [(ngModel)]="password" name="password" #passwordInput="ngModel" required>
+      @if(passwordInput.invalid && passwordInput.touched){
+        <div class="error">
+            Password is required
+          </div>
+      }
+      <button type="submit" [disabled]="loginForm.invalid">Login</button>
     </form>
-  </div>
+</dialog>

@@ -1,0 +1,22 @@
+.top-part {
+    border: solid;
+    opacity: 80%;
+    background-color: transparent;
+}
+
+.in-a-row{
+    display: flex;
+    flex-direction: row;
+}
+
+.row-child {
+    flex: 0 21%
+}
+
+.main{
+    width: 90%;
+    max-width: 75rem;
+    margin: 2.5rem auto;
+    display: grid;
+    grid-auto-flow: row;
+}

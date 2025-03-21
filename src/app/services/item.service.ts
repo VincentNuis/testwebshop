@@ -15,7 +15,7 @@ export class ItemService {
                 name: newItem.name,
                 category: newItem.category,
                 price: newItem.price,
-                image: "Cannon.png"
+                image: newItem.image
             });
         } else {
         this.items.push({
@@ -23,9 +23,10 @@ export class ItemService {
             name: newItem.name,
             category: newItem.category,
             price: newItem.price,
-            image: "Cannon.png"
+            image: newItem.image
         });
     }
+    console.log(this.items);
     }
 
     removeItem(id: number){

@@ -24,6 +24,5 @@ export class AdminComponent {
 
   onAddItem(newItem: NewItem){
     this.itemService.addItem(newItem);
-    console.log(this.itemService.getItems());
   }
 }
