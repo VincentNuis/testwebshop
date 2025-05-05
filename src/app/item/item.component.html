@@ -1,7 +1,10 @@
-<div class="item">
-    <img [src]=imagePath>
+<div class="item-card">
+    <img class="item-card-image" [src]=imagePath>
     <h1>{{ item.name }}</h1>
     <p>{{ item.category }}</p>
-    <p>€ {{ item.price}} </p>
-    <button (click)="onBuy()">Buy</button>
+    <p class="price">{{ item.price | currency}} </p>
+    <div class="item-card-footer">
+        <button class="buy-button" (click)="onBuy()">Buy</button>
+    </div>
+    
 </div>

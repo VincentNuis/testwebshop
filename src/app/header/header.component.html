@@ -1,10 +1,16 @@
-<header>
-    <h1 routerLink="/">HiguReya</h1>
-    <button class="text-button push" routerLink="/cart">
+<header class="pet-nav">
+    <div class="logo" routerLink="/">HiguReya</div>
+    <ul>
+    <li>
+        <a>Cart</a>
+    </li> 
+    <!-- class="text-button push" routerLink="/cart">
         <span>Cart </span>
-        <span class="counter">{{ counter() }}</span>
-    </button>
-    <button class="text-button" (click)="onLogin()">Login</button>
+        <span class="counter">{{ counter() }}</span> -->
+    <!-- </button> -->
+     <li><a (click)="onLogin()">Plugin</a></li>
+    <!-- <button class="text-button" (click)="onLogin()">Login</button> -->
+</ul>
 
     @if (isLoggingIn) {
     <app-login (cancel)="onCancelLogin()" (login)="onCancelLogin()"></app-login>

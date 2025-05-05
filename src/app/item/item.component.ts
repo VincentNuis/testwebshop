@@ -3,10 +3,11 @@ import { CategoryService } from '../services/category.service';
 import { Item } from '../models/item';
 import { ItemService } from '../services/item.service';
 import { CartService } from '../services/cart.service';
+import { CurrencyPipe } from '@angular/common';
 
 @Component({
   selector: 'app-item',
-  imports: [],
+  imports: [CurrencyPipe],
   templateUrl: './item.component.html',
   styleUrl: './item.component.scss'
 })

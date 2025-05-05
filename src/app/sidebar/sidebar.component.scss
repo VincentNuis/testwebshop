@@ -1,9 +1,32 @@
-ul {
-    list-style-type: none;
-}
+@use '../../styles.scss' as *;
 
-.border-top {
-    border-top: solid 2px violet;
-    padding-top: 10px;
-}
-
+.sidebar {
+    background-color: $color-surface;
+    color: $color-primary;
+    padding: 1rem;
+    width: 100%;
+  
+    h2 {
+      font-family: $font-family-main;
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+    }
+  
+    ul {
+      list-style: none;
+      padding: 0;
+  
+      li {
+        margin-bottom: 0.5rem;
+  
+        a {
+          text-decoration: none;
+          color: $color-primary;
+  
+          &:hover {
+            color: $color-accent;
+          }
+        }
+      }
+    }
+  }

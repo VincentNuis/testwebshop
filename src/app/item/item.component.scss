@@ -1,12 +1,52 @@
-.item {
-    max-width: 20rem;
+@use '../../styles.scss' as *;
+@use 'sass:color';  
+
+.item-card {
+  border: 2px solid $color-accent;
+  border-radius: 10px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 350px;
+  width: 100%;
+  box-sizing: border-box;
+  transition: transform 0.3s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+  }
 }
 
-img{
-    width: 100%;
-    height: auto;
+.item-card-image {
+  height: 120px;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 8px;
 }
 
-.inARow{
-    flex-direction: row;
+.item-card-body {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  padding: 0.5rem 0;
+}
+
+.item-card-footer {
+  margin-top: auto;
+  text-align: center;
+
+  .buy-button {
+    background-color: $color-primary;
+    color: white;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: color.adjust($color-primary, $lightness: 10%); /* Pas de lichtheid aan */
+    }
+  }
 }

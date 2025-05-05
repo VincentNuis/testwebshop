@@ -1,66 +1,42 @@
-header {
+@use '../../styles.scss' as *;
+
+.pet-nav {
+  background-color: $color-surface;  // Geen prefix nodig, direct gebruik van variabele
+  color: $color-primary;
+  padding: 20px;
+  border-bottom: 2px solid $color-accent;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 1rem;
+
+  .logo {
+    font-family: $font-family-main;
+    color: $color-accent;
+  }
+
+  ul {
+    list-style: none;
     display: flex;
-    flex-direction: row;
-    gap: 1rem;
-    width: 90%;
-    max-width: 75rem;
-    margin: 0 auto 2rem auto;
-    background: linear-gradient(
-      to bottom,
-      #2c0a4c,
-      #450d80
-    );
-    padding: 1rem;
-    border-bottom-right-radius: 12px;
-    border-bottom-left-radius: 12px;
-    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.6);
-  }
-  
-  img {
-    width: 3.5rem;
-    object-fit: contain;
-  }
-  
-  h1 {
-    font-size: 1.25rem;
+    gap: 1.5rem;
     margin: 0;
     padding: 0;
-    float:left;
-  }
 
-  .push {
-    margin-left: auto;
-  }
-  button {
-    width: 10%;
-    flex-direction: row-reverse;
-  }
-  
-  .counter {
-    background: solid;
-    background-color: red;
-    border-radius: 50%;
-    padding:5px;
-  }
+    li a {
+      color: $color-primary;
+      text-decoration: none;
+      font-family: $font-family-main;
+      position: relative;
 
-  p {
-    margin: 0;
-    font-size: 0.8rem;
-    text-wrap: balance;
-  }
-  
-  @media (min-width: 768px) {
-    header {
-      padding: 2rem;
-    }
-  
-    img {
-      width: 4.5rem;
-    }
-  
-    h1 {
-      font-size: 1.5rem;
-      margin: 0;
-      padding: 0;
+      &:hover::after {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 2px;
+        background: $color-accent;
+        bottom: -2px;
+        left: 0;
+      }
     }
   }
+}

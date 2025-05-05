@@ -1,13 +1,13 @@
-.flex-parent-element{
-    display: flex;
-    flex-wrap: wrap;
-    border-top: 2px solid violet;
-    padding-top: 25px;
-}
+@use '../../styles.scss' as *;
 
-.flex-child-element{
-    flex: 0 21%;
-    margin: 2px;
-    border: 2px solid violet;
-    box-sizing: border-box;
+.shop-items {
+  padding: 1rem;
+  color: $color-primary;
+
+  .item-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1rem;
+  }
+  
 }

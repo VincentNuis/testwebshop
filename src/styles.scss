@@ -1,35 +1,96 @@
-/* You can add global styles to this file, and also import other style files */
+// styles.scss
+
+@use 'sass:color';
+
+// === MMBN Thema Variabelen ===
+$color-bg: #0b1e3e;
+$color-primary: #00d6ff;
+$color-accent: #ffcc00;
+$color-surface: #102040;
+$font-family-main: 'Press Start 2P', monospace;
+$font-size-base: 14px;
+
+// === Mixins ===
+@mixin grid-frame($color) {
+  background: repeating-linear-gradient(
+    45deg,
+    $color,
+    $color 1px,
+    transparent 1px,
+    transparent 8px
+  );
+  border: 2px solid color.adjust($color, $lightness: 20%);
+  padding: 1rem;
+  border-radius: 4px;
+}
+
+// === Globale styles ===
 * {
-    box-sizing: border-box;
-  }
-  
-  html {
-    height: 100%;
-  }
-  
-  body {
-    font-family: "Poppins", sans-serif;
-    background: radial-gradient(circle at top left, #181023, #0b0519);
-    color: #c3b3d8;
-    margin: 0;
-    padding: 0;
-    height: 100%;
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  background-color: $color-bg;
+  color: $color-primary;
+  font-family: $font-family-main;
+  font-size: $font-size-base;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+.text-button {
+  background: transparent;
+  border: none;
+  padding: 0;
+  font-size: 25px;
+  color: $color-accent;
+  text-decoration: none;
+  cursor: pointer;
+
+  &:focus {
+    outline: none;
   }
 
-  .text-button {
-    background: transparent;
-    border: none;
-    padding: 0;
-    font-size: 25px; 
-    color: white; /* Customize the text color */
-    text-decoration: none;
-    cursor: pointer;
-  
-    &:focus {
-      outline: none;
-    }
-  
-    // &:hover {
-    //   text-decoration: underline; /* Optional, adds an underline on hover */
-    // }
+  &:hover {
+    text-shadow: 0 0 4px $color-accent;
   }
+}
+
+// === MMBN-stijl componenten ===
+
+.panel {
+  @include grid-frame($color-surface);
+  color: $color-primary;
+}
+
+.chip {
+  display: inline-block;
+  background: $color-accent;
+  color: #000;
+  padding: 0.3rem 0.6rem;
+  margin: 0.2rem;
+  border-radius: 3px;
+  font-weight: bold;
+  box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
+}
+
+button {
+  background-color: $color-primary;
+  color: #000;
+  border: none;
+  padding: 0.5rem 1rem;
+  font-family: $font-family-main;
+  text-transform: uppercase;
+  box-shadow: 0 0 6px $color-accent;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background-color: color.adjust($color-primary, $lightness: 10%);
+    box-shadow: 0 0 12px $color-accent;
+  }
+}
