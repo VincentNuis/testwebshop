@@ -2,6 +2,7 @@ import { Component, EventEmitter, inject, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
+import { User } from '../models/user';
 
 @Component({
   selector: 'app-login',
@@ -13,25 +14,50 @@ export class LoginComponent {
   @Output() cancel = new EventEmitter<void>();
   username: string = '';
   password: string = '';
+  isRegistering = false;
   loginFailed: boolean = false;
   router = inject(Router)
 
   constructor(private authService: AuthService) {}
 
+
+toggleRegister() {
+  this.isRegistering = !this.isRegistering;
+}
+
+
+onRegister() {
+  if (this.username && this.password) {
+    this.authService.register(this.username, this.password).subscribe({
+      next: () => {
+        alert('Registratie gelukt!');
+        this.isRegistering = false;
+        this.username = '';
+        this.password = '';
+      },
+      error: (err) => {
+        console.error('Registratie mislukt', err);
+        alert('Er ging iets mis bij de registratie.');
+      }
+    });
+  } else {
+    alert('Vul alle velden in.');
+  }
+}
+
   onSubmit() {
     this.authService.login(this.username, this.password).subscribe({
       next: (data) => {
-        // If login is successful, reset loginFailed and navigate
         this.loginFailed = false;
         alert('Login Successful!');
         if (this.username === 'admin') {
           this.router.navigate(['/', 'admin']);
         } else {
-          this.router.navigate(['/', 'home']);  // Or wherever the user should go
+          this.router.navigate(['/', 'home']);  
         }
+        this.cancel.emit();
       },
       error: (err) => {
-        // If login fails, set loginFailed to true
         this.loginFailed = true;
         console.error('Login failed', err);
       }
@@ -42,12 +68,13 @@ export class LoginComponent {
       if (this.username === "admin") {
         this.router.navigate(['/', 'admin']);
       }
+      this.cancel.emit();
     } else {
       this.loginFailed = true;
     }
   }
 
-  private mockAuthService(username: string, password: string): boolean {
+  private mockAuthService(username: String, password: String): boolean {
     return username === 'admin' && password === 'admin123';  // Example mock check
   }
 

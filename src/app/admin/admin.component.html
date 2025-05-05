@@ -1,5 +1,10 @@
-<button (click)="onStartAddItem()" >Add Item</button>
+<button [routerLink]="['/admin/customers']" >Customers Management</button>
+<button [routerLink]="['/admin/products']" >Products Management</button>
 
 @if (isAddingItem) {
     <app-add-item (cancel)="onCancelAddItem()" (add)="onAddItem($event)"></app-add-item>
 }
+
+<div class="router-outlet-wrapper">
+    <router-outlet></router-outlet>
+  </div>

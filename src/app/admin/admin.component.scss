@@ -1,0 +1,30 @@
+/* Dit is de wrapper om de inhoud in de router-outlet te centreren */
+.router-outlet-wrapper {
+    display: flex;                   /* Gebruik flexbox voor centreren */
+    justify-content: center;         /* Horizontaal centreren */
+    align-items: center;             /* Verticaal centreren */
+    min-height: calc(100vh - 60px);   /* Zorgt ervoor dat het outletgedeelte de resterende ruimte neemt onder de header */
+    padding: 2rem;                   /* Optioneel: padding rondom de inhoud */
+    box-sizing: border-box;
+  }
+  
+  router-outlet {
+    width: 100%;                     /* Zorgt ervoor dat de outlet de volledige breedte gebruikt */
+    max-width: 1200px;                /* Optioneel: max breedte voor mooiere lay-out */
+    text-align: center;               /* Center de inhoud binnen het outlet, zoals tekst en tabellen */
+  }
+  
+  button {
+    margin: 10px;
+    padding: 0.5rem 1rem;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  

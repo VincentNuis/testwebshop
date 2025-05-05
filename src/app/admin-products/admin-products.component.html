@@ -1,0 +1,31 @@
+<div>
+    @if (items().length > 0) {
+      <table>
+        <thead>
+          <tr>
+            <th>Naam</th>
+            <th>Categorie</th>
+            <th>Prijs</th>
+            <th>Afbeelding</th>
+            <th>Acties</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (item of items(); track item.id) {
+            <tr>
+              <td>{{ item.name }}</td>
+              <td>{{ item.category }}</td>
+              <td>{{ item.price | currency }}</td>
+              <td><img [src]="'assets/' + item.image" width="50" /></td>
+              <td><button (click)="remove(item.id)">Verwijder</button></td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    
+      <button (click)="addMockProduct()">Voeg nieuw product toe</button>
+    } @else {
+      <p>Geen producten gevonden.</p>
+    }
+  </div>
+  

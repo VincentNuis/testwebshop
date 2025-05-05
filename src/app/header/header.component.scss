@@ -1,18 +1,19 @@
 @use '../../styles.scss' as *;
 
 .pet-nav {
-  background-color: $color-surface;  // Geen prefix nodig, direct gebruik van variabele
+  background-color: $color-surface;
   color: $color-primary;
-  padding: 20px;
+  padding: 0.5rem 1rem;
   border-bottom: 2px solid $color-accent;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.5rem 1rem;
 
   .logo {
     font-family: $font-family-main;
     color: $color-accent;
+    font-size: 1.6rem;
+    cursor: pointer;
   }
 
   ul {
@@ -36,6 +37,24 @@
         background: $color-accent;
         bottom: -2px;
         left: 0;
+      }
+
+      &.cart-link {
+        position: relative;
+
+        .cart-counter {
+          position: absolute;
+          top: -5px;
+          right: -5px;
+          background-color: $color-accent;
+          color: $color-surface;
+          border-radius: 50%;
+          padding: 0.3rem 0.6rem;
+          font-size: 1rem;
+          font-weight: bold;
+          min-width: 20px;
+          text-align: center;
+        }
       }
     }
   }

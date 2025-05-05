@@ -2,14 +2,16 @@
     <div class="logo" routerLink="/">HiguReya</div>
     <ul>
     <li>
-        <a routerLink="/cart">Cart</a>
+        <a routerLink="/cart">
+            Cart
+            @if (cartService.cartItems().length > 0) {
+              <span class="cart-counter">
+                {{ cartService.cartItems().length }}
+              </span>
+            }
+          </a>
     </li> 
-    <!-- class="text-button push" routerLink="/cart">
-        <span>Cart </span>
-        <span class="counter">{{ counter() }}</span> -->
-    <!-- </button> -->
-     <li><a (click)="onLogin()">Plugin</a></li>
-    <!-- <button class="text-button" (click)="onLogin()">Login</button> -->
+     <li><a href="#" (click)="onLogin()">Plugin</a></li>
 </ul>
 
     @if (isLoggingIn) {

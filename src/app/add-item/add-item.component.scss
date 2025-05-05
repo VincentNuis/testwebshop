@@ -1,3 +1,5 @@
+@use "../../styles.scss" as *;
+
 .backdrop {
     background-color: rgba(0, 0, 0, 0.9);
     position: fixed;
@@ -10,7 +12,7 @@
   dialog {
     width: 90%;
     max-width: 30rem;
-    background-color: #433352;
+    background-color: $color-bg;
     border-radius: 6px;
     border: none;
     box-shadow: 0 1px 6px rgba(0, 0, 0, 0.4);
@@ -21,14 +23,14 @@
   
   h2 {
     margin: 0;
-    color: #d0c2e1;
+    color: $color-primary;
   }
   
   label {
     display: block;
     font-weight: bold;
     font-size: 0.85rem;
-    color: #ab9ac0;
+    color: $color-accent;
   }
   
   input,
