@@ -1,37 +1,50 @@
 <div>
   <button (click)="addProduct()">Voeg nieuw product toe</button>
-    @if (items().length > 0) {
-      <table>
-        <thead>
+  @if (items().length > 0) {
+    <table>
+      <thead>
+        <tr>
+          <th>Naam</th>
+          <th>Categorie</th>
+          <th>Prijs</th>
+          <th>Afbeelding</th>
+          <th>Acties</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (item of items(); track item.id) {
           <tr>
-            <th>Naam</th>
-            <th>Categorie</th>
-            <th>Prijs</th>
-            <th>Afbeelding</th>
-            <th>Acties</th>
-          </tr>
-        </thead>
-        <tbody>
-          @for (item of items(); track item.id) {
-            <tr>
+            @if (editingId === item.id) {
+              <!-- Bewerkmodus -->
+              <td><input [(ngModel)]="item.name" /></td>
+              <td>{{ item.category }}</td>
+              <td><input type="number" [(ngModel)]="item.price" /></td>
+              <td><img [src]="getImagePath(item.image)" width="50" /></td>
+              <td>
+                <button (click)="saveEdit(item)">Opslaan</button>
+                <button (click)="cancelEdit()">Annuleren</button>
+              </td>
+            } @else {
+              <!-- Normale modus -->
               <td>{{ item.name }}</td>
               <td>{{ item.category }}</td>
               <td>{{ item.price | currency }}</td>
-              <td><img [src]="'assets/' + item.image" width="50" /></td>
-              <td><button (click)="remove(item.id)">Verwijder</button></td>
-            </tr>
-          }
-        </tbody>
-      </table>
-    
-      
-    } @else {
-      <p>Geen producten gevonden.</p>
-    }
-  </div>
-
-  @if(isAddingItem) {
-    <app-add-item></app-add-item>
+              <td><img [src]="getImagePath(item.image)" width="50" /></td>
+              <td>
+                <button (click)="edit(item.id)">Bewerk</button>
+                <button (click)="remove(item.id)">Verwijder</button>
+              </td>
+            }
+          </tr>
+        }
+      </tbody>
+    </table>
+  } @else {
+    <p>Geen producten gevonden.</p>
   }
+</div>
 
-  
+@if (isAddingItem) {
+  <app-add-item (cancel)="cancelAddProduct()" (add)="cancelAddProduct()"></app-add-item>
+}
+

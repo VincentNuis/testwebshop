@@ -14,12 +14,7 @@ export class AddItemComponent {
   itemService = inject(ItemService);
 
   @Output() cancel = new EventEmitter<void>();
-  @Output() add = new EventEmitter<{
-    name: string;
-    category: string;
-    price: number;
-    image: string;
-  }>();
+  @Output() add = new EventEmitter<void>();
 
   categoryService = inject(CategoryService);
   categories = this.categoryService.getCategories();
@@ -30,12 +25,12 @@ export class AddItemComponent {
   selectedImage: File | null = null;
 
 
-  onSubmit(){
+  onSubmit() {
     if (!this.selectedImage) {
       alert("Selecteer een afbeelding!");
       return;
     }
-  
+    console.log(this.enteredCategory)
     const item: NewItem = {
       name: this.enteredName,
       category: this.enteredCategory,
@@ -43,23 +38,22 @@ export class AddItemComponent {
     };
 
     this.itemService.addItem(item, this.selectedImage!)
-    .subscribe({
-      next: () => console.log('Product succesvol toegevoegd'),
-      error: err => console.error('Fout bij toevoegen:', err)
-    });
-    // this.add.emit({
-    //   name: this.enteredName,
-    //   category: this.enteredCategory,
-    //   price: this.enteredPrice,
-    //   image: this.enteredImage
-    // })
+      .subscribe({
+        next: () => {
+          console.log('Product succesvol toegevoegd');
+          this.itemService.getAllItems(); // Update de lijst van items
+          this.add.emit();
+        }
+        ,
+        error: err => console.error('Fout bij toevoegen:', err)
+      });
   }
 
-  onCancel(){
+  onCancel() {
     this.cancel.emit();
   }
 
-  
+
   imagePreview: string | null = null;
 
   onFileSelected(event: any): void {
@@ -68,10 +62,10 @@ export class AddItemComponent {
       this.enteredImage = this.selectedImage.name;
       const reader = new FileReader();
       reader.onload = () => {
-        this.imagePreview = reader.result as string; 
-        
+        this.imagePreview = reader.result as string;
+
       };
-      reader.readAsDataURL(this.selectedImage); 
+      reader.readAsDataURL(this.selectedImage);
     }
   }
 }

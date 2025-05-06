@@ -1,6 +1,5 @@
-import { Component, inject, Inject, Injectable } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { ItemComponent } from "../item/item.component";
-import { Item } from '../models/item';
 import { CategoryService } from '../services/category.service';
 import { ItemService } from '../services/item.service';
 
