@@ -12,11 +12,11 @@
           </tr>
         </thead>
         <tbody>
-          @for (user of usersSignal(); track user.id) {
+          @for (user of usersDB(); track user.id) {
             <tr>
               <td>{{ user.id }}</td>
               <td>{{ user.email }}</td>
-              <td>{{ user.roles.join(', ') }}</td>
+              <td>{{ getRoleNames(user) }}</td>
               <td>
                 <button (click)="removeUser(user.id)">Verwijder</button>
               </td>
@@ -32,8 +32,8 @@
     <div class="add-user">
       <h3>Nieuwe gebruiker toevoegen</h3>
       <form (ngSubmit)="addUser()">
-        <input [(ngModel)]="newUserEmail" placeholder="Email" required />
-        <select [(ngModel)]="newUserRole" required>
+        <input [(ngModel)]="newUserEmail" name="email" placeholder="Email" required />
+        <select [(ngModel)]="newUserRole" name="role" required>
           <option value="user">User</option>
           <option value="admin">Admin</option>
         </select>

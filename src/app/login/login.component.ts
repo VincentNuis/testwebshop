@@ -2,7 +2,8 @@ import { Component, EventEmitter, inject, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
-import { User } from '../models/user';
+import { JwtHelperService } from '@auth0/angular-jwt';
+
 
 @Component({
   selector: 'app-login',
@@ -12,70 +13,70 @@ import { User } from '../models/user';
 })
 export class LoginComponent {
   @Output() cancel = new EventEmitter<void>();
+
   username: string = '';
   password: string = '';
   isRegistering = false;
   loginFailed: boolean = false;
-  router = inject(Router)
+
+  private router = inject(Router);
+  private jwtHelper = inject(JwtHelperService); 
 
   constructor(private authService: AuthService) {}
 
-
-toggleRegister() {
-  this.isRegistering = !this.isRegistering;
-}
-
-
-onRegister() {
-  if (this.username && this.password) {
-    this.authService.register(this.username, this.password).subscribe({
-      next: () => {
-        alert('Registratie gelukt!');
-        this.isRegistering = false;
-        this.username = '';
-        this.password = '';
-      },
-      error: (err) => {
-        console.error('Registratie mislukt', err);
-        alert('Er ging iets mis bij de registratie.');
-      }
-    });
-  } else {
-    alert('Vul alle velden in.');
+  toggleRegister() {
+    this.isRegistering = !this.isRegistering;
   }
-}
 
-  onSubmit() {
-    this.authService.login(this.username, this.password).subscribe({
-      next: (data) => {
-        this.loginFailed = false;
-        alert('Login Successful!');
-        if (this.username === 'admin') {
-          this.router.navigate(['/', 'admin']);
-        } else {
-          this.router.navigate(['/', 'home']);  
+  onRegister() {
+    if (this.username && this.password) {
+      this.authService.register(this.username, this.password).subscribe({
+        next: () => {
+          alert('Registratie gelukt!');
+          this.isRegistering = false;
+          this.username = '';
+          this.password = '';
+        },
+        error: (err) => {
+          console.error('Registratie mislukt', err);
+          alert('Er ging iets mis bij de registratie.');
         }
-        this.cancel.emit();
-      },
-      error: (err) => {
-        this.loginFailed = true;
-        console.error('Login failed', err);
-      }
-    });
-    if (this.mockAuthService(this.username, this.password)) {
-      alert('Login Successful!');
-      this.loginFailed = false;
-      if (this.username === "admin") {
-        this.router.navigate(['/', 'admin']);
-      }
-      this.cancel.emit();
+      });
     } else {
-      this.loginFailed = true;
+      alert('Vul alle velden in.');
     }
   }
 
-  private mockAuthService(username: String, password: String): boolean {
-    return username === 'admin' && password === 'admin123';  // Example mock check
+  onSubmit() {
+    this.authService.login(this.username, this.password).subscribe({
+      next: (response) => {
+        this.loginFailed = false;
+        
+        // Controleer of de response een token bevat
+        const token = response.token; // of whatever jouw backend terugstuurt als het token
+        if (token) {
+          localStorage.setItem('token', token); // JWT opslaan
+          alert('Login succesvol!');
+          
+          // Navigeren naar admin of home afhankelijk van de gebruiker
+          const decodedToken = this.jwtHelper.decodeToken(token);
+          if (decodedToken.roles[0].role === 'ADMIN') {
+            this.router.navigate(['/admin']);
+          } else {
+            this.router.navigate(['']);
+          }
+          
+          this.cancel.emit();
+        } else {
+          this.loginFailed = true;
+          console.error('Geen token ontvangen bij login');
+        }
+      },
+      error: (err) => {
+        this.loginFailed = true;
+        console.error('Login mislukt', err);
+      }
+    });
   }
 
   onCancel() {
