@@ -1,44 +1,43 @@
 <div class="user-management">
-    <h2>Gebruikersbeheer</h2>
-  
-    @if (usersDB().length > 0) {
-      <table>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Email</th>
-            <th>Rollen</th>
-            <th>Acties</th>
-          </tr>
-        </thead>
-        <tbody>
-          @for (user of usersDB(); track user.id) {
-            <tr>
-              <td>{{ user.id }}</td>
-              <td>{{ user.email }}</td>
-              <td>{{ getRoleNames(user) }}</td>
-              <td>
-                <button (click)="deleteUser(user)">Verwijder</button>
-              </td>
-            </tr>
-          }
-        </tbody>
-      </table>
-    } @else {
-      <p>Er zijn geen gebruikers gevonden.</p>
-    }
-  
-    <!-- Formulier om een gebruiker toe te voegen -->
-    <div class="add-user">
-      <h3>Nieuwe gebruiker toevoegen</h3>
-      <form (ngSubmit)="addUser()">
-        <input [(ngModel)]="newUserEmail" name="email" placeholder="Email" required />
-        <select [(ngModel)]="newUserRole" name="role" required>
-          <option value="USER">User</option>
-          <option value="ADMIN">Admin</option>
-        </select>
-        <button type="submit">Voeg gebruiker toe</button>
-      </form>
-    </div>
+  <h2>User Management</h2>
+
+  @if (usersDB().length > 0) {
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Email</th>
+        <th>Roles</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (user of usersDB(); track user.id) {
+      <tr>
+        <td>{{ user.id }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ getRoleNames(user) }}</td>
+        <td>
+          <button (click)="deleteUser(user)">Delete</button>
+        </td>
+      </tr>
+      }
+    </tbody>
+  </table>
+  } @else {
+  <p>No users found.</p>
+  }
+
+  <!-- Formulier om een gebruiker toe te voegen -->
+  <div class="add-user">
+    <h3>Add New User</h3>
+    <form (ngSubmit)="addUser()">
+      <input [(ngModel)]="newUserEmail" name="email" placeholder="Email" required />
+      <select [(ngModel)]="newUserRole" name="role" required>
+        <option value="USER">User</option>
+        <option value="ADMIN">Admin</option>
+      </select>
+      <button type="submit">Add User</button>
+    </form>
   </div>
-  
+</div>

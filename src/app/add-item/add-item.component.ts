@@ -12,58 +12,53 @@ import { NewItem } from '../interface/newItem';
 })
 export class AddItemComponent {
   itemService = inject(ItemService);
+  categoryService = inject(CategoryService);
 
   @Output() cancel = new EventEmitter<void>();
   @Output() add = new EventEmitter<void>();
 
-  categoryService = inject(CategoryService);
   categories = this.categoryService.getCategories();
-  enteredName = "";
-  enteredCategory = "";
+  enteredName = '';
+  enteredCategory = '';
   enteredPrice = 0.0;
-  enteredImage = "";
+  enteredImage = '';
   selectedImage: File | null = null;
+  imagePreview: string | null = null;
 
-
-  onSubmit() {
+  onSubmit(): void {
     if (!this.selectedImage) {
-      alert("Selecteer een afbeelding!");
+      alert('Please select an image!');
       return;
     }
-    console.log(this.enteredCategory)
+
     const item: NewItem = {
       name: this.enteredName,
       category: this.enteredCategory,
       price: this.enteredPrice
     };
 
-    this.itemService.addItem(item, this.selectedImage!)
-      .subscribe({
-        next: () => {
-          console.log('Product succesvol toegevoegd');
-          this.itemService.getAllItems(); // Update de lijst van items
-          this.add.emit();
-        }
-        ,
-        error: err => console.error('Fout bij toevoegen:', err)
-      });
+    this.itemService.addItem(item, this.selectedImage).subscribe({
+      next: () => {
+        this.itemService.getAllItems();
+        this.add.emit();
+      },
+      error: (err) => console.error('Error adding product:', err)
+    });
   }
 
-  onCancel() {
+  onCancel(): void {
     this.cancel.emit();
   }
 
-
-  imagePreview: string | null = null;
-
-  onFileSelected(event: any): void {
-    this.selectedImage = event.target.files[0];
-    if (this.selectedImage) {
+  onFileSelected(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files[0]) {
+      this.selectedImage = input.files[0];
       this.enteredImage = this.selectedImage.name;
+
       const reader = new FileReader();
       reader.onload = () => {
         this.imagePreview = reader.result as string;
-
       };
       reader.readAsDataURL(this.selectedImage);
     }

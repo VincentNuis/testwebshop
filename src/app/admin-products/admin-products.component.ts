@@ -13,7 +13,6 @@ import { Item } from '../models/item';
   styleUrl: './admin-products.component.scss'
 })
 export class AdminProductsComponent {
-
   isAddingItem = false;
   editingId: number | null = null;
 
@@ -22,50 +21,43 @@ export class AdminProductsComponent {
 
   items = this.productService.itemsDB;
 
-
-  addProduct() {
+  addProduct(): void {
     this.isAddingItem = true;
   }
 
-  cancelAddProduct() {
-    this.isAddingItem = false; // Annuleer het toevoegen van een product
+  cancelAddProduct(): void {
+    this.isAddingItem = false;
   }
 
-  edit(id: number) {
-    this.editingId = id; // Zet de ID van het item dat wordt bewerkt
+  edit(id: number): void {
+    this.editingId = id;
   }
 
-  saveEdit(item: Item) {
-    console.log(item);
+  saveEdit(item: Item): void {
     this.productService.updateItem(item.id, item).subscribe({
       next: () => {
-        console.log('Product succesvol bijgewerkt');
-        this.productService.getAllItems(); // Update de lijst van items
+        this.productService.getAllItems();
         this.editingId = null;
       },
-      error: err => console.error('Fout bij bijwerken:', err)
+      error: (err) => console.error('Error updating product:', err)
     });
-    // Verlaat de bewerkmodus
   }
 
-  cancelEdit() {
-    this.editingId = null; // Annuleer de bewerkmodus
+  cancelEdit(): void {
+    this.editingId = null;
   }
 
-  remove(id: number) {
-    console.log('Verwijder product met ID:', id);
+  remove(id: number): void {
     this.productService.deleteItem(id).subscribe({
       next: () => {
-        console.log('Product succesvol verwijderd');
-        this.productService.getAllItems(); // Update de lijst van items
+        this.productService.getAllItems();
       },
-      error: err => console.error('Fout bij verwijderen:', err)
+      error: (err) => console.error('Error deleting product:', err)
     });
-    this.productService.getAllItems(); // Update de lijst van items
   }
 
   getImagePath(image: string): string {
     const mimeType = "image/jpg";
-    return this.base64Service.getImagePath(image, mimeType)
+    return this.base64Service.getImagePath(image, mimeType);
   }
 }

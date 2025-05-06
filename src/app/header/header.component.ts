@@ -1,4 +1,4 @@
-import { Component, computed, inject, signal } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 import { LoginComponent } from "../login/login.component";
 import { RouterLink } from '@angular/router';
 import { CartService } from '../services/cart.service';
@@ -12,14 +12,16 @@ import { CartService } from '../services/cart.service';
 export class HeaderComponent {
   cartService = inject(CartService);
   isLoggingIn = false;
-  onCancelLogin() {
+
+  onCancelLogin(): void {
     this.isLoggingIn = false;
   }
-  onLogin() {
+
+  onLogin(): void {
     this.isLoggingIn = true;
   }
-  counter = computed(() => this.cartService.cartItems().reduce(
-    (acc, item) => acc + item.quantity, 0
-  ))
 
+  counter = computed(() =>
+    this.cartService.cartItems().reduce((acc, item) => acc + item.quantity, 0)
+  );
 }

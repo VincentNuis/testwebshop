@@ -17,19 +17,16 @@ export const AdminGuard: CanActivateChildFn = () => {
       return false;
     }
 
-    if (decodedToken.roles && Array.isArray(decodedToken.roles)) {
-      const isAdmin = decodedToken.roles.some((role: { role: string }) => role.role === 'ADMIN');
-
+    const roles = decodedToken.roles;
+    if (roles && Array.isArray(roles)) {
+      const isAdmin = roles.some((role: { role: string }) => role.role === 'ADMIN');
       if (isAdmin) {
         return true;
-      } else {
-        router.navigate(['/']);
-        return false;
       }
-    } else {
-      router.navigate(['/']);
-      return false;
     }
+
+    router.navigate(['/']);
+    return false;
   }
 
   router.navigate(['/']);

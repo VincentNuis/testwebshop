@@ -16,47 +16,41 @@ export class AdminUsersComponent {
   usersDB = this.userService.usersDB;
 
   newUserEmail: string = '';
-  newUserRole: string = 'user';
+  newUserRole: string = 'USER';
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.userService.getAllUsers();
   }
 
   getRoleNames(user: User): string {
-    return user.roles.map((r: any) => r.role ?? r).join(', ');
+    return user.roles.map((role: any) => role.role ?? role).join(', ');
   }
 
-  addUser() {
-    const newUser = new User(
-      null,
-      this.newUserEmail,
-      [this.newUserRole])
+  addUser(): void {
+    const newUser = new User(null, this.newUserEmail, [this.newUserRole]);
     this.userService.addUser(newUser).subscribe({
       next: () => {
-        alert('Registratie gelukt!');
+        alert('User registered successfully!');
         this.newUserEmail = '';
         this.newUserRole = 'USER';
         this.userService.getAllUsers();
       },
       error: (err) => {
-        console.error('Registratie mislukt', err);
-        alert('Er ging iets mis bij de registratie.');
+        console.error('Error registering user:', err);
+        alert('An error occurred while registering the user.');
       }
-    });;
+    });
   }
 
-  removeUser(userId: number) {
-    this.userService.removeUser(userId);
-  }
-
-  deleteUser(user: User) {
+  deleteUser(user: User): void {
     this.userService.deleteUser(user).subscribe({
       next: () => {
-        alert('User deleted successfully');
+        alert('User deleted successfully!');
         this.userService.getAllUsers();
       },
       error: (err) => {
-        alert('Error deleting user');
+        console.error('Error deleting user:', err);
+        alert('An error occurred while deleting the user.');
       }
     });
   }

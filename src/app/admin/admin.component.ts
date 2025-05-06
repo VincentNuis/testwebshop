@@ -14,16 +14,11 @@ export class AdminComponent {
   isAddingItem = false;
   itemService = inject(ItemService);
 
-
-  onStartAddItem(){
+  onStartAddItem(): void {
     this.isAddingItem = true;
   }
 
-  onCancelAddItem(){
+  onCancelAddItem(): void {
     this.isAddingItem = false;
-  }
-
-  onAddItem(newItem: NewItem){
-    // this.itemService.addItem(newItem);
   }
 }

@@ -24,11 +24,11 @@ export class LoginComponent {
 
   constructor(private authService: AuthService) {}
 
-  toggleRegister() {
+  toggleRegister(): void {
     this.isRegistering = !this.isRegistering;
   }
 
-  onRegister() {
+  onRegister(): void {
     if (this.username && this.password) {
       this.authService.register(this.username, this.password).subscribe({
         next: () => {
@@ -47,18 +47,16 @@ export class LoginComponent {
     }
   }
 
-  onSubmit() {
+  onSubmit(): void {
     this.authService.login(this.username, this.password).subscribe({
       next: (response) => {
         this.loginFailed = false;
         
-        // Controleer of de response een token bevat
         const token = response.token; // of whatever jouw backend terugstuurt als het token
         if (token) {
           localStorage.setItem('token', token); // JWT opslaan
           alert('Login succesvol!');
           
-          // Navigeren naar admin of home afhankelijk van de gebruiker
           const decodedToken = this.jwtHelper.decodeToken(token);
           if (decodedToken.roles[0].role === 'ADMIN') {
             this.router.navigate(['/admin']);
@@ -79,7 +77,7 @@ export class LoginComponent {
     });
   }
 
-  onCancel() {
+  onCancel(): void {
     this.cancel.emit();
   }
 }

@@ -2,34 +2,34 @@
 
 <dialog open>
   @if (!isRegistering) {
-    <h2>Login</h2>
-    <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
-      <label for="username">Username:</label>
-      <input type="text" id="username" [(ngModel)]="username" name="username" #usernameInput="ngModel" required>
-      @if (usernameInput.invalid && usernameInput.touched) {
-        <div class="error">Username is required</div>
-      }
+  <h2>Login</h2>
+  <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
+    <label for="username">Username:</label>
+    <input type="text" id="username" [(ngModel)]="username" name="username" #usernameInput="ngModel" required />
+    @if (usernameInput.invalid && usernameInput.touched) {
+    <div class="error">Username is required</div>
+    }
 
-      <label for="password">Password:</label>
-      <input type="password" id="password" [(ngModel)]="password" name="password" #passwordInput="ngModel" required>
-      @if (passwordInput.invalid && passwordInput.touched) {
-        <div class="error">Password is required</div>
-      }
+    <label for="password">Password:</label>
+    <input type="password" id="password" [(ngModel)]="password" name="password" #passwordInput="ngModel" required />
+    @if (passwordInput.invalid && passwordInput.touched) {
+    <div class="error">Password is required</div>
+    }
 
-      <button type="submit" [disabled]="loginForm.invalid">Login</button>
-    </form>
-    <p class="toggle-link" (click)="toggleRegister()">Nog geen account? <strong>Registreren</strong></p>
+    <button type="submit" [disabled]="loginForm.invalid">Login</button>
+  </form>
+  <p class="toggle-link" (click)="toggleRegister()">Don't have an account? <strong>Register</strong></p>
   } @else {
-    <h2>Registreren</h2>
-    <form (ngSubmit)="onRegister()" #registerForm="ngForm">
-      <label for="reg-username">Username:</label>
-      <input type="text" id="reg-username" [(ngModel)]="username" name="username" required>
+  <h2>Register</h2>
+  <form (ngSubmit)="onRegister()" #registerForm="ngForm">
+    <label for="reg-username">Username:</label>
+    <input type="text" id="reg-username" [(ngModel)]="username" name="username" required />
 
-      <label for="reg-password">Password:</label>
-      <input type="password" id="reg-password" [(ngModel)]="password" name="password" required>
+    <label for="reg-password">Password:</label>
+    <input type="password" id="reg-password" [(ngModel)]="password" name="password" required />
 
-      <button type="submit">Maak account aan</button>
-    </form>
-    <p class="toggle-link" (click)="toggleRegister()">Al een account? <strong>Inloggen</strong></p>
+    <button type="submit">Create Account</button>
+  </form>
+  <p class="toggle-link" (click)="toggleRegister()">Already have an account? <strong>Login</strong></p>
   }
 </dialog>

@@ -1,8 +1,8 @@
 <div class="item-card">
-    <img class="item-card-image" [src]=imagePath>
+    <img class="item-card-image" [src]="imagePath" alt="{{ item.name }}" />
     <h1>{{ item.name }}</h1>
     <p>{{ item.category }}</p>
-    <p class="price">{{ item.price | currency}} </p>
+    <p class="price">{{ item.price | currency }}</p>
     <div class="item-card-footer">
         <button class="buy-button" (click)="onBuy()">Buy</button>
     </div>

@@ -19,11 +19,11 @@ export class ItemComponent {
     category: string;
     price: number;
     image: string;
-  }
+  };
 
   private imageObjectURL: string | null = null;
 
-  get imagePath() {
+  get imagePath(): string {
     const mimeType = 'image/jpg';
     if (this.item.image) {
       return this.base64Service.getImagePath(this.item.image, mimeType);
@@ -43,7 +43,7 @@ export class ItemComponent {
     }
   }
 
-  onBuy() {
+  onBuy(): void {
     this.cartService.addToCart(this.item);
   }
 }

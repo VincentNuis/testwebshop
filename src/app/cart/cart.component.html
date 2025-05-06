@@ -1,21 +1,20 @@
 <div class="cart">
     <h2>Your Cart</h2>
-    @if(cartService.cartItems().length > 0){
-        @for (item of cartService.cartItems();  track $index) {
-            <div class="cart-item">
-                <p>
-                    {{ item.item.name}} - {{ item.item.price | currency }}
-                </p>
-
-                <select class="quantity-selector" [(ngModel)]="item.quantity" (change)="onQuantitySelected(item, item.quantity)">
-                    <option *ngFor="let q of qtyArr" [value]="q">{{ q }}</option>
-                  </select>
-                  
-                  <button (click)="onRemove(item)">Remove</button>
-            </div>
-        }
-        <p class="total">Total: {{ totalPrice | currency }}</p>
+    @if (cartService.cartItems().length > 0) {
+    @for (item of cartService.cartItems(); track $index) {
+    <div class="cart-item">
+        <p>
+            {{ item.item.name }} - {{ item.item.price | currency }}
+        </p>
+        <select class="quantity-selector" [(ngModel)]="item.quantity"
+            (change)="onQuantitySelected(item, item.quantity)">
+            <option *ngFor="let q of qtyArr" [value]="q">{{ q }}</option>
+        </select>
+        <button (click)="onRemove(item)">Remove</button>
+    </div>
+    }
+    <p class="total">Total: {{ totalPrice | currency }}</p>
     } @else {
-      <p>Your cart is empty.</p>
+    <p>Your cart is empty.</p>
     }
 </div>

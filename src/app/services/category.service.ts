@@ -1,26 +1,23 @@
 import { Injectable, signal } from "@angular/core";
 
 @Injectable({
-    providedIn:'root'
+  providedIn: 'root'
 })
-
 export class CategoryService {
-    private currentCategorySignal = signal("New");
-    private categories: string[] = ["New", "PET", "Battle Chips", "Navi"];
+  private currentCategorySignal = signal("New");
+  private categories: string[] = ["New", "PET", "Battle Chips", "Navi"];
 
-    readonly currentCategory = this.currentCategorySignal.asReadonly();
+  readonly currentCategory = this.currentCategorySignal.asReadonly();
 
-    constructor(){}
-    
-    changeCategory(category: string){
-        this.currentCategorySignal.set(category);
-    }
+  changeCategory(category: string): void {
+    this.currentCategorySignal.set(category);
+  }
 
-    addCategory(newCategory: string){
-        this.categories.push(newCategory);
-    }
+  addCategory(newCategory: string): void {
+    this.categories.push(newCategory);
+  }
 
-    getCategories(){
-        return this.categories;
-    }
+  getCategories(): string[] {
+    return this.categories;
+  }
 }

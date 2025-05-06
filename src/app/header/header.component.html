@@ -1,20 +1,22 @@
 <header class="pet-nav">
-    <div class="logo" routerLink="/">HiguReya</div>
-    <ul>
+  <div class="logo" routerLink="/">HiguReya</div>
+  <ul>
     <li>
-        <a routerLink="/cart">
-            Cart
-            @if (cartService.cartItems().length > 0) {
-              <span class="cart-counter">
-                {{ cartService.cartItems().length }}
-              </span>
-            }
-          </a>
-    </li> 
-     <li><a href="#" (click)="onLogin()">Plugin</a></li>
-</ul>
+      <a routerLink="/cart">
+        Cart
+        @if (cartService.cartItems().length > 0) {
+        <span class="cart-counter">
+          {{ cartService.cartItems().length }}
+        </span>
+        }
+      </a>
+    </li>
+    <li>
+      <a href="#" (click)="onLogin()">Login</a>
+    </li>
+  </ul>
 
-    @if (isLoggingIn) {
-    <app-login (cancel)="onCancelLogin()" (login)="onCancelLogin()"></app-login>
-    }
+  @if (isLoggingIn) {
+  <app-login (cancel)="onCancelLogin()" (login)="onCancelLogin()"></app-login>
+  }
 </header>
