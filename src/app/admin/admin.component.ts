@@ -24,6 +24,6 @@ export class AdminComponent {
   }
 
   onAddItem(newItem: NewItem){
-    this.itemService.addItem(newItem);
+    // this.itemService.addItem(newItem);
   }
 }

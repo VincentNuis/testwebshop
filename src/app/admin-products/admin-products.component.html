@@ -1,4 +1,5 @@
 <div>
+  <button (click)="addProduct()">Voeg nieuw product toe</button>
     @if (items().length > 0) {
       <table>
         <thead>
@@ -23,9 +24,14 @@
         </tbody>
       </table>
     
-      <button (click)="addMockProduct()">Voeg nieuw product toe</button>
+      
     } @else {
       <p>Geen producten gevonden.</p>
     }
   </div>
+
+  @if(isAddingItem) {
+    <app-add-item></app-add-item>
+  }
+
   

@@ -1,7 +1,7 @@
 <div class="user-management">
     <h2>Gebruikersbeheer</h2>
   
-    @if (usersSignal().length > 0) {
+    @if (usersDB().length > 0) {
       <table>
         <thead>
           <tr>
@@ -18,7 +18,7 @@
               <td>{{ user.email }}</td>
               <td>{{ getRoleNames(user) }}</td>
               <td>
-                <button (click)="removeUser(user.id)">Verwijder</button>
+                <button (click)="deleteUser(user)">Verwijder</button>
               </td>
             </tr>
           }
@@ -34,8 +34,8 @@
       <form (ngSubmit)="addUser()">
         <input [(ngModel)]="newUserEmail" name="email" placeholder="Email" required />
         <select [(ngModel)]="newUserRole" name="role" required>
-          <option value="user">User</option>
-          <option value="admin">Admin</option>
+          <option value="USER">User</option>
+          <option value="ADMIN">Admin</option>
         </select>
         <button type="submit">Voeg gebruiker toe</button>
       </form>

@@ -1,30 +1,29 @@
 import { Component, inject } from '@angular/core';
 import { ItemService } from '../services/item.service';
 import { CommonModule } from '@angular/common';
+import { AddItemComponent } from "../add-item/add-item.component";
 
 @Component({
   selector: 'app-admin-products',
-  imports: [CommonModule],
+  imports: [CommonModule, AddItemComponent],
   templateUrl: './admin-products.component.html',
   styleUrl: './admin-products.component.scss'
 })
 export class AdminProductsComponent {
+
+  isAddingItem = false;
 
   productService = inject(ItemService);
 
   items = this.productService.getItems;
 
   
-  addMockProduct() {
-    this.productService.addItem({
-      name: 'Nieuw Product',
-      category: 'Nieuw',
-      price: 25,
-      image: 'new-product.jpg'
-    });
+  addProduct() {
+    this.isAddingItem = true;
   }
 
   remove(id: number) {
     this.productService.deleteItem(id);
   }
+
 }

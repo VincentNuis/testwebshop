@@ -1,7 +1,8 @@
 import { Component, EventEmitter, inject, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { NewItem } from '../models/item';
 import { CategoryService } from '../services/category.service';
+import { ItemService } from '../services/item.service';
+import { NewItem } from '../interface/newItem';
 
 @Component({
   selector: 'app-add-item',
@@ -10,6 +11,8 @@ import { CategoryService } from '../services/category.service';
   styleUrl: './add-item.component.scss'
 })
 export class AddItemComponent {
+  itemService = inject(ItemService);
+
   @Output() cancel = new EventEmitter<void>();
   @Output() add = new EventEmitter<{
     name: string;
@@ -24,32 +27,51 @@ export class AddItemComponent {
   enteredCategory = "";
   enteredPrice = 0.0;
   enteredImage = "";
+  selectedImage: File | null = null;
+
 
   onSubmit(){
-    this.add.emit({
+    if (!this.selectedImage) {
+      alert("Selecteer een afbeelding!");
+      return;
+    }
+  
+    const item: NewItem = {
       name: this.enteredName,
       category: this.enteredCategory,
-      price: this.enteredPrice,
-      image: this.enteredImage
-    })
+      price: this.enteredPrice
+    };
+
+    this.itemService.addItem(item, this.selectedImage!)
+    .subscribe({
+      next: () => console.log('Product succesvol toegevoegd'),
+      error: err => console.error('Fout bij toevoegen:', err)
+    });
+    // this.add.emit({
+    //   name: this.enteredName,
+    //   category: this.enteredCategory,
+    //   price: this.enteredPrice,
+    //   image: this.enteredImage
+    // })
   }
 
   onCancel(){
     this.cancel.emit();
   }
 
+  
   imagePreview: string | null = null;
 
   onFileSelected(event: any): void {
-    const file = event.target.files[0];
-    if (file) {
-      this.enteredImage = file.name;
+    this.selectedImage = event.target.files[0];
+    if (this.selectedImage) {
+      this.enteredImage = this.selectedImage.name;
       const reader = new FileReader();
       reader.onload = () => {
         this.imagePreview = reader.result as string; 
         
       };
-      reader.readAsDataURL(file); 
+      reader.readAsDataURL(this.selectedImage); 
     }
   }
 }

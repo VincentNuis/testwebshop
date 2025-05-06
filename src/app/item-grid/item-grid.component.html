@@ -2,15 +2,15 @@
     <h1>{{ this.categoryService.currentCategory() }}</h1>
     <div class="item-grid">
         @if (categoryService.currentCategory() === "New"){
-        @for (item of itemList; track item.id){
-        <app-item class="flex-child-element" [item]=item></app-item>
-        }
-        } @else {
-        @for (item of itemList; track item.id){
-        @if (item.category === categoryService.currentCategory()){
-        <app-item class="flex-child-element" [item]=item></app-item>
-        }
-        }
+            @for (item of itemList(); track item.id){
+                <app-item class="flex-child-element" [item]=item></app-item>
+                }
+            } @else {
+            @for (item of itemList(); track item.id){
+                @if (item.category === categoryService.currentCategory()){
+            <app-item class="flex-child-element" [item]=item></app-item>
+                }
+            }
         }
     </div>
 </section>
