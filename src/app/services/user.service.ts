@@ -4,7 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Observable } from 'rxjs';
 
-const apiUrl = 'http://20.107.56.65:8080/api/users';
+const apiUrl = 'http://ipwrc-backend-production.up.railway.app/api/users';
 
 @Injectable({
   providedIn: 'root'

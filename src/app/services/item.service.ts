@@ -5,7 +5,7 @@ import { Item } from "../models/item";
 import { NewItem } from "../interface/newItem";
 import { JwtHelperService } from "@auth0/angular-jwt";
 
-const apiUrl = 'http://20.107.56.65:8080/api/products';
+const apiUrl = 'http://ipwrc-backend-production.up.railway.app/api/products';
 
 @Injectable({
   providedIn: 'root'
