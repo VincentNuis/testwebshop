@@ -14,6 +14,7 @@
     </div>
     }
     <p class="total">Total: {{ totalPrice | currency }}</p>
+    <button (click)="placeOrder()">Place Order</button>
     } @else {
     <p>Your cart is empty.</p>
     }
