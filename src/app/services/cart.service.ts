@@ -74,7 +74,7 @@ export class CartService {
   createOrderBackend(order: any): Observable<any> {
     console.log(order);
     const headers = this.getAuthHeaders();
-    return this.http.post('http://ipwrc-backend-production.up.railway.app/api/orders', order, { headers });
+    return this.http.post('https://ipwrc-backend-production.up.railway.app/api/orders', order, { headers });
   }
 
   getTotalPrice(): number {
