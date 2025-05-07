@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { User } from '../models/user';
 
-const apiUrl = 'ipwrc-backend-production.up.railway.app/api/users';
+const apiUrl = 'https://ipwrc-backend-production.up.railway.app/api/users';
 
 @Injectable({
   providedIn: 'root',
