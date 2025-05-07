@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { User } from '../models/user';
 
-const apiUrl = 'http://localhost:8080/api/users';
+const apiUrl = 'http://hsleidenhigureya-c4fdepaxcqbagvh7.westeurope-01.azurewebsites.net/api/users';
 
 @Injectable({
   providedIn: 'root',
