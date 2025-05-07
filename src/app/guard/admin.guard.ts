@@ -24,9 +24,6 @@ export const AdminGuard: CanActivateChildFn = () => {
         return true;
       }
     }
-
-    router.navigate(['/']);
-    return false;
   }
 
   router.navigate(['/']);
